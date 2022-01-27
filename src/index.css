@@ -12,7 +12,14 @@
         line-height: 1.5385;
         color: #9ca3af;
         text-align: left;
-        background-color: #111827;
+        background-color: #1e1e1e;
+        -webkit-app-region: drag;
+    }
+    a {
+        -webkit-app-region: no-drag;
+    }
+    button {
+        -webkit-app-region: no-drag;   
     }
 }
 

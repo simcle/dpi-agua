@@ -1,0 +1,37 @@
+connection ke serial port
+
+menggunakan package serialport versi 10.0.0
+npm run install --save serialport@10.0.0
+
+
+daftar serialport
+1. tampilkan semua daftar serial port yang terbuka pada component "portconnection.vue"
+2. auto update pada list component "portconnection" jika ada usb baru yg terhubung atau sebaliknya
+3. tombol connect harus disabled jika tidak ada prot yang terpilih pada list 
+
+vuex serialport
+state: {
+    data: {         //untuk menampilkan data dari serialport
+        ph: 0.00,
+        do: 0.00,
+        ec: 0.00,
+    },
+    status: false,   //boolean jika s 
+
+}
+
+skenario
+
+1. port belum terhubung
+    : status = false
+2. jika port sudah terhubung
+    : status = true
+
+3. jika port sedang terhubung
+    : status = true
+    -- usb di cabut 
+    : status = false
+    
+
+
+
