@@ -1,18 +1,20 @@
 <template>
 	<div>
-		<div class="fixed w-full inset-0">
-			<div class="flex items-center justify-between bg-gray-800">
+		<div class="fixed w-full top-0">
+			<div class="flex items-center justify-between bg-gray-800 drag">
 				<div class="px-5 py-1 text-red-500"></div>
 				<div class="flex items-center">
-					<a href="#" @click="minimize" class="hover:bg-gray-700 py-1 px-2"><i class="icon-minus3" style="font-size: 12px;"></i></a>
-					<a href="#" @click="maximize" class="hover:bg-gray-700 py-1 px-2"><i class="icon-checkbox-unchecked" style="font-size: 12px;"></i></a>
-					<a href="#" @click="close" class="hover:bg-gray-700 py-1 px-2"><i class="icon-cross2" style="font-size: 12px;"></i></a>
+					<a href="#" @click="minimize" class="hover:bg-gray-700 py-1 px-2 cursor-auto"><i class="icon-minus3" style="font-size: 12px;"></i></a>
+					<a href="#" @click="maximize" class="hover:bg-gray-700 py-1 px-2 cursor-auto"><i class="icon-checkbox-unchecked" style="font-size: 12px;"></i></a>
+					<a href="#" @click="close" class="hover:bg-gray-700 py-1 px-2 cursor-auto"><i class="icon-cross2" style="font-size: 12px;"></i></a>
 				</div>
 			</div>
 			<div class="py-2 flex items-center justify-between px-5">
-				<div>hallo</div>
 				<div>
-					<a href="#" @click.prevent="port_connection = true" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm"><i class="icon-cog3"></i></a>
+					<a href="#" @click.prevent="port_connection = true" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm"><i class="icon-alignment-unalign" :class="{'text-green-500': status}"></i></a>
+				</div>
+				<div>
+				
 				</div>
 			</div>
 		</div>
@@ -46,7 +48,7 @@ export default {
 	computed: {
 		...mapGetters({
 			status: 'get_status'
-		})
+		}),
 	},
 	methods: {
         minimize: () => ipcRenderer.send('minimize'),
@@ -67,6 +69,9 @@ export default {
 
 
 <style>
+	.drag {
+		-webkit-app-region: drag;
+	}
 	.content{
 		margin-top: 68px;
 	}

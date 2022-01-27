@@ -75,7 +75,7 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">Temperature</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-800 mb-5">246.84 	℃</div>
+                <div class="text-center text-4xl font-extrabold text-gray-800 mb-5">0.00℃</div>
             </div>
             <!-- /end temperature -->
 
@@ -97,7 +97,7 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">Pump</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-100 mb-5">0.0 ml</div>
+                <div class="text-center text-4xl font-extrabold text-gray-100 mb-5">0.00 ml</div>
             </div>
             <!-- /end pump -->
 
@@ -119,7 +119,7 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">CO<sub>2</sub></div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-900 mb-5">957 ppm</div>
+                <div class="text-center text-4xl font-extrabold text-gray-900 mb-5">0.00 ppm</div>
             </div>
             <!-- /end co2 -->
         </div>
