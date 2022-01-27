@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import './index.css'
+import './assets/icons/icomoon/styles.min.css'
+
 Vue.config.productionTip = false
 
 new Vue({

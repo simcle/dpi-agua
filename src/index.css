@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900');
+@layer base {
+    body {
+        margin: 0;
+        font-family: Roboto,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        font-size: .8125rem;
+        font-weight: 400;
+        line-height: 1.5385;
+        color: #9ca3af;
+        text-align: left;
+        background-color: #111827;
+    }
+}
+
+/* Transition router view */
+.fade-enter-active,
+.fade-leave-active {
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0
+}
+/* end transition router viwe */
+
+/* Modal */
+.modal-enter-active{
+    transition: all 0.3s linear;
+}
+
+.modal-leave-active {
+    transition: all 0.3s linear;
+}
+.modal-enter-from, .modal-leave-to {
+    opacity: 0;
+}
+
+.slide-enter-active {
+    transition: all 0.3s;
+    animation: slide 0.3s;
+}
+.slide-leave-active {
+    transition: all 0.2s;
+    animation: slide 0.2s reverse;
+}
+.slide-enter-from, .slide-leave-to {
+    opacity: 0;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateY(-300px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+/* end modal */
+
+/* form radio chceckbox */
+.form-radio, .form-checkbox {
+    display: flex;
+    align-items: center;
+}
+.form-radio label, .form-checkbox label {
+    padding-left: 10px;
+    cursor: pointer;
+}
+[type="radio"], [type="checkbox"]{
+    appearance: none;
+    cursor: pointer;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    outline: none;
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #6B7280;
+}
+[type="radio"]:disabled, [type="checkbox"]:disabled {
+    appearance: none;
+    cursor: pointer;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    outline: none;
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #D1D5DB;
+}
+[type="checkbox"] {
+    border-radius: 3px;
+}
+[type="checkbox"]:disabled {
+    border-radius: 3px;
+}
+[type="radio"]::after {
+    content: '';
+    position: absolute;
+    width: 0.625rem;
+    height: 0.625rem;
+    background: #6B7280;
+    border-radius: 50%;
+    opacity: 0;
+}
+[type="checkbox"]::after {
+    content: '';
+    position: absolute;
+    font-family: icomoon;
+    font-size: 1rem;
+    color: #6B7280;
+    opacity: 0;
+}
+[type="checkbox"]:disabled:checked::after {
+    content: '';
+    position: absolute;
+    font-family: icomoon;
+    font-size: 1rem;
+    color: #D1D5DB;
+    opacity: 1;
+}
+[type="radio"]:checked::after, [type="checkbox"]:checked::after {
+    opacity: 1;
+}
+[type="radio"]:disabled:checked::after {
+    content: '';
+    position: absolute;
+    width: 0.625rem;
+    height: 0.625rem;
+    background: #D1D5DB;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+/* end form radio chekc */
