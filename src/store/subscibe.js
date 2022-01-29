@@ -17,6 +17,8 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app)
 
 let toServer = false
+let user_id = ''
+let rtb = ''
 let logger = {
     ph: 0.00,
     do: 0.00,
@@ -32,20 +34,36 @@ store.subscribe((mutations) => {
                 localStorage.setItem('token', mutations.payload)
             } else {
                 toServer = false
-                axios.defaults.headers.common['Authorization'] = `Beare ${mutations.payload}`
-                localStorage.setItem('token', mutations.payload)   
+                axios.defaults.headers.common['Authorization'] = ''
+                localStorage.setItem('token')   
+            }
+            break
+        case 'auth/SET_USER_ID' :
+            if(mutations.payload) {
+                user_id = mutations.payload
+                localStorage.setItem('user_id', mutations.payload)
+            } else {
+                user_id = ''
+                localStorage.removeItem('user_id')
             }
             break
         case 'SET_DATA':
             // untuk firebase
             logger = {
+                user_id: user_id,
+                ph: mutations.payload.ph,
+                do: mutations.payload.do,
+                ec: mutations.payload.ec,
+                createdAt: Date.now()
+            }
+            rtb = {
                 ph: mutations.payload.ph,
                 do: mutations.payload.do,
                 ec: mutations.payload.ec,
                 createdAt: Date.now()
             }
             if(toServer) {
-                set(ref(db, 'sensor/user_id'), logger)
+                set(ref(db, 'sensor/' + user_id), rtb)
             }
             break
     }

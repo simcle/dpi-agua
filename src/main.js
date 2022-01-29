@@ -25,6 +25,7 @@ getPatFromLocalstorage()
 
 Vue.config.productionTip = false
 store.commit('auth/SET_TOKEN', localStorage.getItem('token'))
+store.commit('auth/SET_USER_ID', localStorage.getItem('user_id'))
 new Vue({
   router,
   store,

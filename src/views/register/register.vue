@@ -2,40 +2,68 @@
     <div>
         <div class="grid lg:grid-cols-3 sm:grid-cols-5 gap-3">
             <div class="lg:col-span-2 sm:col-span-3">
-                <h1 class="text-lg">Privacy Polys</h1>
+                <h1 class="text-lg">Kebijakan </h1>
                 <p v-for="i in 5" :key="i"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, animi? Temporibus aperiam nulla unde adipisci cumque illo, facere ullam sit quis saepe voluptatum ut perspiciatis inventore enim autem, incidunt fugiat.</p>
             </div>
             <div class="lg:col-span-1 sm:col-span-2 border p-5 rounded-sm bg-cyan-700 border-cyan-900 shadow-md text-gray-300 relative overflow-hidden">
-                <div class="mb-5">FORM DAFTAR</div>
-                <form @submit.prevent="onSubmit">
-                    <!-- <div class="mb-3">
-                        <label for="">Lokasi Sensor</label>
-                        <input type="text" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="cont (kebun, lab, rungan a)">
-                    </div> -->
-                    <div class="mb-3">
-                        <label for="">Nama Lengkap</label>
-                        <input v-model="form.name" @keydown="error.name = ''" type="text" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="nama lengkap">
-                        <span v-if="error.name" class="text-xs text-red-300">{{error.name}}</span>
+                <div class="grid grid-cols-2 mb-5">
+                    <div @click="tab = 'daftar'" :class="[tab == 'daftar' ? 'bg-black':'hover:text-black hover:bg-cyan-600']" class="col-span-1 text-center cursor-pointer py-2">
+                        DAFTAR
                     </div>
-                    <div class="mb-3">
-                        <label for="">Eamil</label>
-                        <input v-model="form.email" @keydown="error.email = ''" type="email" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="nama@email.com">
-                        <span v-if="error.email" class="text-xs text-red-300">{{error.email}}</span>
+                    <div @click="tab = 'masuk'" :class="[tab == 'masuk' ? 'bg-black':'hover:text-black hover:bg-cyan-600']" class="col-span-1 text-center cursor-pointer py-2">
+                        MASUK
                     </div>
-                    <div class="mb-3">
-                        <label for="">Passowrd</label>
-                        <input v-model="form.password" @keydown="error.password = ''" type="password" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="password">
-                        <span v-if="error.password" class="text-xs text-red-300">{{error.password}}</span>
+                </div>
+                    <div v-if="tab == 'daftar'">
+                        <form @submit.prevent="onSubmit">
+                            <!-- <div class="mb-3">
+                                <label for="">Lokasi Sensor</label>
+                                <input type="text" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="cont (kebun, lab, rungan a)">
+                            </div> -->
+                            <div class="mb-3">
+                                <label for="">Nama Lengkap</label>
+                                <input v-model="form.name" @keydown="error.name = ''" type="text" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="nama lengkap">
+                                <span v-if="error.name" class="text-xs text-red-300">{{error.name}}</span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Eamil</label>
+                                <input v-model="form.email" @keydown="error.email = ''" type="email" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="nama@email.com">
+                                <span v-if="error.email" class="text-xs text-red-300">{{error.email}}</span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Passowrd</label>
+                                <input v-model="form.password" @keydown="error.password = ''" type="password" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="password">
+                                <span v-if="error.password" class="text-xs text-red-300">{{error.password}}</span>
+                            </div>
+                            <div class="mb-5">
+                                <label for="">Ulangi passowrd</label>
+                                <input v-model="form.repeat_password" @keydown="error.repeat_password = ''" type="password" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="password">
+                                <span v-if="error.repeat_password" class="text-xs text-red-300">{{error.repeat_password}}</span>
+                            </div>
+                            <div class="mt-10">
+                                <button class="bg-yellow-600 text-gray-800 font-medium w-full h-9 rounded-sm">DAFTAR</button>
+                            </div>
+                        </form>
+
                     </div>
-                    <div class="mb-5">
-                        <label for="">Ulangi passowrd</label>
-                        <input v-model="form.repeat_password" @keydown="error.repeat_password = ''" type="password" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="password">
-                        <span v-if="error.repeat_password" class="text-xs text-red-300">{{error.repeat_password}}</span>
+                    <div v-else>
+                        <form @submit.prevent="onSubmit">
+                            <div class="mb-3">
+                                <label for="">Eamil</label>
+                                <input v-model="form.email" @keydown="error.email = ''" type="email" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="nama@email.com">
+                                <span v-if="error.email" class="text-xs text-red-300">{{error.email}}</span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Passowrd</label>
+                                <input v-model="form.password" @keydown="error.password = ''" type="password" class="h-9 mt-1 bg-cyan-600 border-cyan-600 border rounded-sm px-3 w-full focus:outline-none placeholder-cyan-500" placeholder="password">
+                                <span v-if="error.password" class="text-xs text-red-300">{{error.password}}</span>
+                            </div>
+                            <div class="mt-10">
+                                <button class="bg-yellow-600 text-gray-800 font-medium w-full h-9 rounded-sm">MASUK</button>
+                            </div>
+                        </form>
+
                     </div>
-                    <div class="mt-10">
-                        <button class="bg-yellow-600 text-gray-800 font-medium w-full h-9 rounded-sm">DAFTAR</button>
-                    </div>
-                </form>
                 <div v-show="isLoading" class="bg-white absolute inset-0 bg-opacity-30 flex items-center justify-center">
                     <div class="text-center">
                         <i class="icon-spinner4 icon-3x text-gray-600 animate-spin"></i>
@@ -66,6 +94,7 @@ import axios from 'axios'
 export default {
     data () {
         return {
+            tab: 'daftar',
             isLoading: false,
             notif: false,
             form: {
@@ -100,22 +129,46 @@ export default {
                 if(this.form.password != this.form.repeat_password) {
                     this.error.repeat_password = 'password tidak sama'
                 } else {
-                    this.onRegister()
+                    if(this.tab == 'daftar') {
+                        this.onRegister()
+                    } else {
+                        this.onLOgin()
+                    }
                 }
             }
         },
         onRegister () {
             this.isLoading = true
-            axios.post('/auth/login', {
-                email: 'nendisofiandy84@gmail.com',
-                password: 'pwlan123'
-            })
+            axios.post('/auth/register', this.form)
             .then((res) => {
-                console.log(res);
+                console.log(res.data);
                 let token = res.data.access_token
+                let user_id = res.data.id
                 this.$store.commit('auth/SET_TOKEN', token)
+                this.$store.commit('auth/SET_USER_ID', user_id)
                 this.isLoading = false
                 this.notif = true
+            })
+            .catch(err => {
+                if(err.response) {
+                    this.isLoading = false
+                    this.error.email = 'Eamil ini sudah terdaftar'
+                }
+            })
+        },
+        onLOgin () {
+            this.isLoading = true
+             axios.post('/auth/login', {
+                email: this.form.email,
+                password: this.form.password
+            })
+            .then((res) => {
+                let token = res.data.access_token
+                let user_id = res.data.id
+                this.$store.commit('auth/SET_TOKEN', token)
+                this.$store.commit('auth/SET_USER_ID', user_id)
+                this.isLoading = false
+                this.$router.push('/')
             })
             .catch(err => {
                 if(err.response) {
