@@ -35,7 +35,7 @@ store.subscribe((mutations) => {
             } else {
                 toServer = false
                 axios.defaults.headers.common['Authorization'] = ''
-                localStorage.setItem('token')   
+                localStorage.removeItem('token')   
             }
             break
         case 'auth/SET_USER_ID' :
