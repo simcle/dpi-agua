@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import auth from './auth'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -12,6 +12,7 @@ export default new Vuex.Store({
     },
     status: false,
     error: '',
+    internet: false,
   },
   getters: {
     get_data (state) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     get_error (state) {
       return state.error
+    },
+    get_internet (state) {
+      return state.internet
     }
   },
   mutations: {
@@ -33,10 +37,14 @@ export default new Vuex.Store({
     },
     SET_ERROR (state, error) {
       state.error = error
+    },
+    SET_INTERNET (state, internet) {
+      state.internet = internet
     }
   },
   actions: {
   },
   modules: {
+    auth
   }
 })

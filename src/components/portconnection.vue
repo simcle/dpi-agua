@@ -20,7 +20,7 @@
                                 <div class="text-center mb-3">Silahkan pilih PORT !!</div>
                                 <div class="px-5 mb-5">
                                     <ul class="space-y-3">
-                                        <li v-for="(port, i) in ports" :key="i" :class="[port.path == path ? 'bg-green-500 bg-opacity-10':'']" class="border border-gray-600 rounded-sm relative flex items-center py-2 hover:border-gray-500 hover:bg-gray-800">
+                                        <li v-for="(port, i) in ports" :key="i" :class="[port.path == path ? 'bg-green-500 bg-opacity-10':'']" class="border border-gray-700 rounded-sm relative flex items-center py-2 hover:border-gray-600 hover:bg-gray-800">
                                             <input v-model="path" :id="i" type="radio" class="form-radio ml-3" name="port" :value="port.path">
                                             <label :for="i" class="py-2 absolute w-full px-10 cursor-pointer">{{port.path}} {{port.manufacturer}}</label>
                                         </li>

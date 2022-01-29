@@ -2,7 +2,7 @@
     <div>
         <div class="grid grid-cols-3 gap-3">
             <!-- Dissolved Oxygen -->
-            <div class="col-span-1 bg-yellow-400 p-3 rounded-smm">
+            <div class="col-span-1 bg-yellow-400 p-3 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"
@@ -19,12 +19,12 @@
                     </div>
                     <div class="text-gray-800 font-medium text-lg">Dissolved Oxygen</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-800 mb-5">{{data.do.toFixed(2)}} mg/L</div>
+                <div class="text-center text-4xl font-extrabold text-gray-800 mb-5">{{data.do}} mg/L</div>
             </div>
             <!-- /end dissolved oxygen -->
 
              <!-- ph -->
-            <div class="col-span-1 bg-red-500 p-3 rounded-smm">
+            <div class="col-span-1 bg-red-500 p-3 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"
@@ -36,12 +36,12 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">pH</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-100 mb-5">{{data.ph.toFixed(2)}}</div>
+                <div class="text-center text-4xl font-extrabold text-gray-100 mb-5">{{data.ph}}</div>
             </div>
             <!-- end ph -->
 
             <!-- EC -->
-            <div class="col-span-1 bg-green-500 p-3 rounded-smm">
+            <div class="col-span-1 bg-green-500 p-3 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"
@@ -57,12 +57,12 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">EC</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-100 mb-5">{{data.ec.toFixed(2)}} µS</div>
+                <div class="text-center text-4xl font-extrabold text-gray-100 mb-5">{{data.ec}} µS</div>
             </div>
             <!-- /end ec -->
 
             <!-- Temperature -->
-            <div class="col-span-1 bg-gray-400 p-3 rounded-smm">
+            <div class="col-span-1 bg-gray-400 p-3 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"
@@ -80,7 +80,7 @@
             <!-- /end temperature -->
 
             <!-- Pump -->
-            <div class="col-span-1 bg-blue-500 p-3 rounded-smm">
+            <div class="col-span-1 bg-blue-500 p-3 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"
@@ -102,7 +102,7 @@
             <!-- /end pump -->
 
             <!-- CO2 -->
-            <div class="col-span-1 bg-yellow-600 p-3 rounded-smm">
+            <div class="col-span-1 bg-orange-500 p-3 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"

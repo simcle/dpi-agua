@@ -20,7 +20,12 @@ export function conPort (path) {
 
     parser.on('data', (data) => {
         let serialdata = JSON.parse(data)
-        store.commit('SET_DATA', serialdata)
+        let sensor = {
+            ph: serialdata.ph.toFixed(2),
+            do: serialdata.do.toFixed(2),
+            ec: serialdata.ec.toFixed(2)
+        }
+        store.commit('SET_DATA', sensor)
     })
 
     port.on('error', (err) => {

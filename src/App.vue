@@ -1,20 +1,22 @@
 <template>
 	<div>
-		<div class="fixed w-full top-0">
+		<div class="fixed w-full top-0 z-50">
 			<div class="flex items-center justify-between bg-gray-800 drag">
-				<div class="px-5 py-1 text-red-500"></div>
+				<div class="px-5 py-1 text-gray-500">dpi-agua 0.1.0 ksk</div>
 				<div class="flex items-center">
 					<a href="#" @click="minimize" class="hover:bg-gray-700 py-1 px-2 cursor-auto"><i class="icon-minus3" style="font-size: 12px;"></i></a>
 					<a href="#" @click="maximize" class="hover:bg-gray-700 py-1 px-2 cursor-auto"><i class="icon-checkbox-unchecked" style="font-size: 12px;"></i></a>
-					<a href="#" @click="close" class="hover:bg-gray-700 py-1 px-2 cursor-auto"><i class="icon-cross2" style="font-size: 12px;"></i></a>
+					<a href="#" @click="close" class="hover:bg-red-700 hover:text-gray-200 py-1 px-2 cursor-auto"><i class="icon-cross2" style="font-size: 12px;"></i></a>
 				</div>
 			</div>
-			<div class="py-2 flex items-center justify-between px-5">
-				<div>
+			<div class="py-2.5 bg-black flex items-center justify-between px-5">
+				<div class="flex space-x-2">
+					<router-link to="/" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-home"></i></router-link>
+					<router-link to="/register" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-cloud-upload"></i></router-link>
 					<a href="#" @click.prevent="port_connection = true" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm"><i class="icon-alignment-unalign" :class="{'text-green-500': status}"></i></a>
 				</div>
 				<div>
-				
+					<div><i class="icon-connection" :class="[internet ? 'text-green-500':'text-gray-700']"></i></div>
 				</div>
 			</div>
 		</div>
@@ -39,6 +41,11 @@ export default {
 		portConnection,
 		Alert
 	},
+	created () {
+		window.addEventListener('online', this.internetStataus)
+		window.addEventListener('offline', this.internetStataus)
+		this.internetStataus()
+	},
 	data () {
 		return {
 			alert: false,
@@ -47,7 +54,8 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			status: 'get_status'
+			status: 'get_status',
+			internet: 'get_internet'
 		}),
 	},
 	methods: {
@@ -57,6 +65,9 @@ export default {
 		onDismiss () {
 			this.alert = false
 			localStorage.removeItem('path')
+		},
+		internetStataus () {
+			this.$store.commit('SET_INTERNET', window.navigator.onLine)
 		}
     },
 	watch: {
@@ -69,6 +80,9 @@ export default {
 
 
 <style>
+	.active {
+		@apply bg-cyan-600 text-gray-300 !important
+	}
 	.drag {
 		-webkit-app-region: drag;
 	}

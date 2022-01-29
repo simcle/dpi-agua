@@ -13,7 +13,9 @@
   },
   "main": "background.js",
   "dependencies": {
+    "axios": "^0.25.0",
     "core-js": "^3.6.5",
+    "firebase": "^9.6.5",
     "serialport": "^10.0.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
