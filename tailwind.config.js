@@ -12,10 +12,12 @@ module.exports = {
       gray: colors.gray,
       red: colors.red,
       yellow: colors.yellow,
-      green: colors.emerald,
+      green: colors.green,
+      emerald: colors.emerald,
       blue: colors.blue,
       cyan: colors.cyan,
-      orange: colors.orange
+      orange: colors.orange,
+      rose: colors.rose
     },
     extend: {},
   },

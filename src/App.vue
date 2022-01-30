@@ -2,7 +2,7 @@
 	<div>
 		<div class="fixed w-full top-0 z-50">
 			<div class="flex items-center justify-between bg-gray-800 drag">
-				<div class="px-5 py-1 text-gray-500">dpi-agua 0.1.0 ksk</div>
+				<div class="px-5 py-1 text-gray-500">dpi-agua v0.1.0</div>
 				<div class="flex items-center">
 					<a href="#" @click="minimize" class="hover:bg-gray-700 py-1 px-2 cursor-auto"><i class="icon-minus3" style="font-size: 12px;"></i></a>
 					<a href="#" @click="maximize" class="hover:bg-gray-700 py-1 px-2 cursor-auto"><i class="icon-checkbox-unchecked" style="font-size: 12px;"></i></a>
