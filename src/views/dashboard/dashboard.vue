@@ -158,7 +158,7 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">Hum</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-900 mb-5">0.00 ppm</div>
+                <div class="text-center text-4xl font-extrabold text-gray-900 mb-5">0.00</div>
             </div>
             <!-- /end Hum -->
 

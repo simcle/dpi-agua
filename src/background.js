@@ -121,22 +121,26 @@ function chekPage (i , p) {
   return p;
 }
 ipcMain.on('getData', (event, arg) => {
+  let order = arg.order;
+  let key = arg.key
+  let page = arg.page
   let count;
   let data = {};
   let limit = 10;
-  let offset = (arg -1) * limit;
+  let offset = (page -1) * limit;
+
   db.serialize(function() {
     db.all(`SELECT COUNT(*) as count FROM logger`, (err, row) => {
       if(err) throw err;
       count = row[0].count
-      db.all(`SELECT * FROM logger LIMIT ${limit} OFFSET ${offset}`, (err, row) => {
+      db.all(`SELECT * FROM logger ORDER BY ${key} ${order} LIMIT ${limit} OFFSET ${offset}`, (err, row) => {
         let p = Math.floor(count / limit)
         let i = count / limit
         let last_pages = chekPage(i, p)
         data = {
           logger: row,
           pages: {
-            current_page: arg,
+            current_page: page,
             last_page: last_pages
           }
         }

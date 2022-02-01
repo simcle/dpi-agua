@@ -12,9 +12,9 @@
 			<div class="py-2.5 bg-black flex items-center justify-between px-5">
 				<div class="flex space-x-2">
 					<router-link to="/" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-home"></i></router-link>
-					<router-link to="/register" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-cloud-upload"></i></router-link>
 					<router-link to="/logger" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-file-spreadsheet"></i></router-link>
 					<a href="#" @click.prevent="port_connection = true" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm"><i class="icon-alignment-unalign" :class="{'text-green-500': status}"></i></a>
+					<router-link to="/register" class="bg-yellow-500 text-gray-100 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-cloud-upload"></i></router-link>
 				</div>
 				<div>
 					<div><i class="icon-connection" :class="[internet ? 'text-green-500':'text-gray-700']"></i></div>
