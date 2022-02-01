@@ -28,9 +28,8 @@ export function conPort (path) {
         store.commit('SET_DATA', sensor)
     })
 
-    port.on('error', (err) => {
+    port.on('error', () => {
         store.commit('SET_DATA', data)
-        console.log('error' + err);
     })
 
     port.on('open', () => {

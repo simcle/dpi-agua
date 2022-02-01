@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="fixed w-full top-0 z-50">
+		<div class="fixed w-full top-0 z-">
 			<div class="flex items-center justify-between bg-gray-800 drag">
 				<div class="px-5 py-1 text-gray-500">dpi-agua v0.1.0</div>
 				<div class="flex items-center">
@@ -13,6 +13,7 @@
 				<div class="flex space-x-2">
 					<router-link to="/" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-home"></i></router-link>
 					<router-link to="/register" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-cloud-upload"></i></router-link>
+					<router-link to="/logger" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-file-spreadsheet"></i></router-link>
 					<a href="#" @click.prevent="port_connection = true" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm"><i class="icon-alignment-unalign" :class="{'text-green-500': status}"></i></a>
 				</div>
 				<div>

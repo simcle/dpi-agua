@@ -3,6 +3,26 @@
 import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
+import sqlite3 from 'sqlite3'
+import path from 'path'
+
+const userData = app.getPath('userData')
+const dbFile = path.join(userData, 'database.sqlite')
+
+const db = new sqlite3.Database(dbFile)
+
+db.serialize(function () {
+  let sql = `CREATE TABLE IF NOT EXISTS logger(
+    ph REAL,
+    do REAL,
+    ec REAL,
+    timestamp TEXT
+  )`;
+  db.run(sql)
+})
+
+
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Scheme must be registered before the app is ready
@@ -14,9 +34,9 @@ async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
     width: 800,
-    height: 480,
+    height: 525,
     minWidth: 800,
-    minHeight: 480,
+    minHeight: 525,
     frame: false,
     webPreferences: {
       
@@ -82,6 +102,49 @@ if (isDevelopment) {
     })
   }
 }
+
+// set data to database
+ipcMain.on('storeData', (event, data) => {
+  db.serialize(function() {
+    let sql = `INSERT INTO logger('ph', 'do', 'ec', 'timestamp') 
+      VALUES('${data.ph}', '${data.do}', '${data.ec}', '${data.timestamp}')`;
+
+    db.run(sql);
+  })
+})
+
+// get data from data base with paginate schema
+function chekPage (i , p) {
+  if(i > p ) {
+    p = p+1;
+  }
+  return p;
+}
+ipcMain.on('getData', (event, arg) => {
+  let count;
+  let data = {};
+  let limit = 10;
+  let offset = (arg -1) * limit;
+  db.serialize(function() {
+    db.all(`SELECT COUNT(*) as count FROM logger`, (err, row) => {
+      if(err) throw err;
+      count = row[0].count
+      db.all(`SELECT * FROM logger LIMIT ${limit} OFFSET ${offset}`, (err, row) => {
+        let p = Math.floor(count / limit)
+        let i = count / limit
+        let last_pages = chekPage(i, p)
+        data = {
+          logger: row,
+          pages: {
+            current_page: arg,
+            last_page: last_pages
+          }
+        }
+        event.returnValue = data
+      })
+    })
+  })
+})
 
 ipcMain.on('minimize', event => {
   event.sender.getOwnerBrowserWindow().minimize()

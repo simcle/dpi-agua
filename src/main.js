@@ -8,7 +8,7 @@ require('./store/subscibe')
 
 import { conPort } from './arduino'
 
-
+import './database'
 import './index.css'
 import './assets/icons/icomoon/styles.min.css'
 
