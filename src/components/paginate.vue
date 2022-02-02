@@ -2,11 +2,11 @@
     <div>
         <div class="relative inline-flex -space-x-px">
             <button class="bg-gray-800 border border-gray-700 relative px-2.5 py-1"><i class="icon-arrow-left22"></i></button>
-            <button v-for="page in rangeOne" :key="page.page" @click="getData(page.page)" :class="[pages.current_page == page.page? 'bg-red-500 text-gray-100':'bg-gray-800']" class="border border-gray-700 relative px-2.5 py-1">{{page.page}}</button>
+            <button v-for="page in rangeOne" :key="page.page" @click="getData(page.page)" :class="[pages.current_page == page.page? 'bg-red-600 text-gray-100':'bg-gray-800']" class="border border-gray-700 relative px-2.5 py-1">{{page.page}}</button>
             <span v-if="rangeOne.length == 2" class="bg-gray-800 border border-gray-700 px-2.5 py-1 cursor-not-allowed">...</span>
-            <button v-for="page in rangeTwo" :key="page.page" @click="getData(page.page)" :class="[pages.current_page == page.page? 'bg-red-500 text-gray-100':'bg-gray-800']" class="bg-gray-800 border border-gray-700 relative px-2.5 py-1">{{page.page}}</button>
+            <button v-for="page in rangeTwo" :key="page.page" @click="getData(page.page)" :class="[pages.current_page == page.page? 'bg-red-600 text-gray-100':'bg-gray-800']" class="bg-gray-800 border border-gray-700 relative px-2.5 py-1">{{page.page}}</button>
             <span v-if="rangeThree.length == 2" class="bg-gray-800 border border-gray-700 px-2.5 py-1 cursor-not-allowed">...</span>
-            <button v-for="page in rangeThree" :key="page.page" @click="getData(page.page)" :class="[pages.current_page == page.page? 'bg-red-500 text-gray-100':'bg-gray-800']" class="border border-gray-700 relative px-2.5 py-1">{{page.page}}</button>
+            <button v-for="page in rangeThree" :key="page.page" @click="getData(page.page)" :class="[pages.current_page == page.page? 'bg-red-600 text-gray-100':'bg-gray-800']" class="border border-gray-700 relative px-2.5 py-1">{{page.page}}</button>
             <button class="bg-gray-800 border border-gray-700 relative px-2.5 py-1"><i class="icon-arrow-right22"></i></button>
         </div>
     </div>

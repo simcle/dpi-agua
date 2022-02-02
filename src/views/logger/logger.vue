@@ -58,14 +58,7 @@ export default {
         }
     },
     mounted () {
-        let params = {
-                page: 1,
-                key: this.sortKey,
-                order: this.sortOrder
-            }
-        let data = ipcRenderer.sendSync('getData', params)
-        this.pages = data.pages
-        this.loggers = data.logger
+        this.getData(1)
     },
     methods: {
         getData (i) {

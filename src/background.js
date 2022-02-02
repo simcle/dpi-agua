@@ -38,6 +38,7 @@ async function createWindow() {
     minWidth: 800,
     minHeight: 525,
     frame: false,
+    titleBarStyle: 'hidden',
     webPreferences: {
       
       // Use pluginOptions.nodeIntegration, leave this alone
@@ -126,7 +127,7 @@ ipcMain.on('getData', (event, arg) => {
   let page = arg.page
   let count;
   let data = {};
-  let limit = 10;
+  let limit = 19;
   let offset = (page -1) * limit;
 
   db.serialize(function() {
