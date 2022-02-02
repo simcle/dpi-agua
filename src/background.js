@@ -39,6 +39,7 @@ async function createWindow() {
     minHeight: 525,
     frame: false,
     titleBarStyle: 'hidden',
+    titleBarOverlay: true,
     webPreferences: {
       
       // Use pluginOptions.nodeIntegration, leave this alone
