@@ -32,7 +32,7 @@
 				</div>
 			</div>
 		</div>
-		<div :class="[arg.navbar === false && show ? 'content':'content-macos-fullscreen'] " class="p-3">
+		<div :class="[arg.navbar === false && show == false ? 'content-macos-fullscreen':'content'] " class="p-3">
 			<transition name="fade" mode="out-in">
 				<router-view />
 			</transition>
@@ -59,7 +59,7 @@ export default {
 			port_connection: false,
 			arg: {
 				version: '',
-				navbar: true
+				navbar: false
 			},
 			show: true
 		}
