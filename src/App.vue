@@ -1,14 +1,25 @@
 <template>
 	<div>
 		<div class="fixed w-full top-0 z-30">
-			<div class="flex items-center justify-between bg-gray-800 drag py-3">
-				<!-- <div class="px-5 py-1 text-gray-500">dpi-agua v0.1.0</div>
+			<!-- windows win32 navbar -->
+			<div v-if="arg.navbar" class="flex items-center justify-between bg-gray-800 drag">
+				<div class="px-5 py-1 text-gray-500">dpi-agua v{{arg.version}}</div>
 				<div class="flex items-center">
-					<a href="#" @click="minimize" class="hover:bg-gray-700 py-1 px-2 cursor-auto"><i class="icon-minus3" style="font-size: 12px;"></i></a>
-					<a href="#" @click="maximize" class="hover:bg-gray-700 py-1 px-2 cursor-auto"><i class="icon-checkbox-unchecked" style="font-size: 12px;"></i></a>
-					<a href="#" @click="close" class="hover:bg-red-700 hover:text-gray-200 py-1 px-2 cursor-auto"><i class="icon-cross2" style="font-size: 12px;"></i></a>
-				</div> -->
+					<a href="#" @click="minimize" class="hover:bg-gray-700 py-1 px-3 cursor-auto"><i class="icon-minus3" style="font-size: 12px;"></i></a>
+					<a href="#" @click="maximize" class="hover:bg-gray-700 py-1 px-3 cursor-auto"><i class="icon-checkbox-unchecked" style="font-size: 12px;"></i></a>
+					<a href="#" @click="close" class="hover:bg-red-700 hover:text-gray-200 py-1 px-3 cursor-auto"><i class="icon-cross2" style="font-size: 12px;"></i></a>
+				</div>
 			</div>
+			<!-- /windons navbar  -->
+
+			<!-- macOS navbar -->
+			<div v-else>
+				<div v-if="show" class="bg-gray-800 flex items-center justify-center drag">
+					<div class="px-3 py-1">dpi-agua v{{arg.version}}</div>
+				</div>
+			</div>
+			<!-- /macOS navbar -->
+
 			<div class="py-2.5 bg-black flex items-center justify-between px-5">
 				<div class="flex space-x-2">
 					<router-link to="/" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-home"></i></router-link>
@@ -21,7 +32,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="content p-3">
+		<div :class="[arg.navbar === false && show ? 'content':'content-macos-fullscreen'] " class="p-3">
 			<transition name="fade" mode="out-in">
 				<router-view />
 			</transition>
@@ -42,16 +53,25 @@ export default {
 		portConnection,
 		Alert
 	},
+	data () {
+		return {
+			alert: false,
+			port_connection: false,
+			arg: {
+				version: '',
+				navbar: true
+			},
+			show: true
+		}
+	},
 	created () {
 		window.addEventListener('online', this.internetStataus)
 		window.addEventListener('offline', this.internetStataus)
 		this.internetStataus()
-	},
-	data () {
-		return {
-			alert: false,
-			port_connection: false
-		}
+		this.arg = ipcRenderer.sendSync('OperatingSystem')
+		ipcRenderer.on('navbarMacOS', (_, message) => {
+			this.show = message
+		})
 	},
 	computed: {
 		...mapGetters({
@@ -89,5 +109,8 @@ export default {
 	}
 	.content{
 		margin-top: 68px;
+	}
+	.content-macos-fullscreen {
+		margin-top: 43px;
 	}
 </style>

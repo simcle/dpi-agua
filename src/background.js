@@ -38,8 +38,8 @@ async function createWindow() {
     minWidth: 800,
     minHeight: 525,
     frame: false,
-    titleBarStyle: 'hidden',
-    titleBarOverlay: true,
+    titleBarStyle: 'hidden', // macOS
+    trafficLightPosition: {x: 10, y: 7}, // macOS
     webPreferences: {
       
       // Use pluginOptions.nodeIntegration, leave this alone
@@ -49,6 +49,18 @@ async function createWindow() {
     }
   })
 
+  win.on('enter-full-screen', () => {
+    // olny macOS
+    if(process.platform === 'darwin') {
+      win.webContents.send('navbarMacOS', false)
+    }
+  })
+  win.on('leave-full-screen', () => {
+    // only macOS
+    if(process.platform === 'darwin') {
+      win.webContents.send('navbarMacOS', true)
+    }
+  })
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
@@ -59,6 +71,7 @@ async function createWindow() {
     win.loadURL('app://./index.html')
   }
 }
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -105,6 +118,24 @@ if (isDevelopment) {
   }
 }
 
+// cek opertaing system
+
+ipcMain.on('OperatingSystem', (event) => {
+  let arg = {
+    version: app.getVersion(),
+    navbar: true
+  }
+  console.log(app.getVersion());
+  if(process.platform === 'darwin') {
+    arg.navbar = false
+  }
+  event.returnValue = arg
+
+
+})
+
+
+
 // set data to database
 ipcMain.on('storeData', (event, data) => {
   db.serialize(function() {
@@ -122,6 +153,8 @@ function chekPage (i , p) {
   }
   return p;
 }
+
+
 ipcMain.on('getData', (event, arg) => {
   let order = arg.order;
   let key = arg.key
