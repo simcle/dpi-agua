@@ -33,6 +33,12 @@ setInterval(() => {
             ph: data.ph,
             do: data.do,
             ec: data.ec,
+            temp: data.temp,
+            pump: data.pump,
+            co2: data.co2,
+            o2: data.o2,
+            hum: data.hum,
+            orp: data.orp,
             timestamp: timestamp
         }
         ipcRenderer.send('storeData', store)

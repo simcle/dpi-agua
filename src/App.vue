@@ -3,7 +3,7 @@
 		<div class="fixed w-full top-0 z-30">
 			<!-- windows win32 navbar -->
 			<div v-if="arg.navbar" class="flex items-center justify-between bg-gray-800 drag">
-				<div class="px-5 py-1 text-gray-500">dpi-agua v{{arg.version}}</div>
+				<div class="px-3 py-1 text-gray-500">dpi-agua v{{arg.version}}</div>
 				<div class="flex items-center">
 					<a href="#" @click="minimize" class="hover:bg-gray-700 py-1 px-3 cursor-auto"><i class="icon-minus3" style="font-size: 12px;"></i></a>
 					<a href="#" @click="maximize" class="hover:bg-gray-700 py-1 px-3 cursor-auto"><i class="icon-checkbox-unchecked" style="font-size: 12px;"></i></a>
@@ -14,25 +14,25 @@
 
 			<!-- macOS navbar -->
 			<div v-else>
-				<div v-if="show" class="bg-gray-800 flex items-center justify-center drag">
+				<div v-if="navShow" class="bg-gray-800 flex items-center justify-center drag">
 					<div class="px-3 py-1">dpi-agua v{{arg.version}}</div>
 				</div>
 			</div>
 			<!-- /macOS navbar -->
 
-			<div class="py-2.5 bg-black flex items-center justify-between px-5">
+			<div class="py-2.5 bg-black flex items-center justify-between px-3">
 				<div class="flex space-x-2">
 					<router-link to="/" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-home"></i></router-link>
 					<router-link to="/logger" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-file-spreadsheet"></i></router-link>
 					<a href="#" @click.prevent="port_connection = true" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm"><i class="icon-alignment-unalign" :class="{'text-green-500': status}"></i></a>
 					<router-link to="/register" class="bg-yellow-500 text-gray-100 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-cloud-upload"></i></router-link>
 				</div>
-				<div>
+				<div class="mr-2">
 					<div><i class="icon-connection" :class="[internet ? 'text-green-500':'text-gray-700']"></i></div>
 				</div>
 			</div>
 		</div>
-		<div :class="[arg.navbar === false && show == false ? 'content-macos-fullscreen':'content'] " class="p-3">
+		<div :class="[arg.navbar === false && navShow == false ? 'content-macos-fullscreen':'content'] " class="p-3">
 			<transition name="fade" mode="out-in">
 				<router-view />
 			</transition>
@@ -61,7 +61,7 @@ export default {
 				version: '',
 				navbar: false
 			},
-			show: true
+			navShow: true
 		}
 	},
 	created () {
@@ -70,7 +70,7 @@ export default {
 		this.internetStataus()
 		this.arg = ipcRenderer.sendSync('OperatingSystem')
 		ipcRenderer.on('navbarMacOS', (_, message) => {
-			this.show = message
+			this.navShow = message
 		})
 	},
 	computed: {

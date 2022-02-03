@@ -3,11 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import VCalendar from 'v-calendar';
 
 require('./store/subscibe')
 
 import { conPort } from './arduino'
-
 import './database'
 import './index.css'
 import './assets/icons/icomoon/styles.min.css'
@@ -24,6 +24,8 @@ function getPatFromLocalstorage () {
 getPatFromLocalstorage()
 
 Vue.config.productionTip = false
+
+Vue.use(VCalendar)
 store.commit('auth/SET_TOKEN', localStorage.getItem('token'))
 store.commit('auth/SET_USER_ID', localStorage.getItem('user_id'))
 new Vue({

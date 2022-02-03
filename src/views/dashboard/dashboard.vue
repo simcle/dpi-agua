@@ -2,7 +2,7 @@
     <div>
         <div class="grid grid-cols-3 gap-3">
             <!-- Dissolved Oxygen -->
-            <div class="col-span-1 bg-yellow-400 p-3 rounded-sm">
+            <div class="col-span-1 bg-yellow-400 px-3 pt-3 md:pb-3 lg:pb-1 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"
@@ -19,12 +19,23 @@
                     </div>
                     <div class="text-gray-800 font-medium text-lg">Dissolved Oxygen</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-800 mb-5">{{data.do}} mg/L</div>
+                <div class="text-center text-4xl font-extrabold text-gray-800 md:mb-5 lg:mb-3">{{data.do}} mg/L</div>
+                <div class="md:hidden lg:block">
+                    <div class="flex items-center text-gray-600">
+                        <div class="font-medium">SAAT INI</div>
+                        <div class="space-x-3.5 flex text-xs ml-auto">
+                            <div class="border-b-2 border-gray-600">AVG: {{dox.avg}}</div>
+                            <div class="border-b-2 border-gray-600">LOW: {{dox.low}}</div>
+                            <div class="border-b-2 border-gray-600">HIHG: {{dox.high}}</div>
+                        </div>
+                    </div>
+                    <canvas id="do"></canvas>
+                </div>
             </div>
             <!-- /end dissolved oxygen -->
 
              <!-- ph -->
-            <div class="col-span-1 bg-red-500 p-3 rounded-sm">
+            <div class="col-span-1 bg-red-500 px-3 pt-3 md:pb-3 lg:pb-1 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"
@@ -36,12 +47,23 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">pH</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-100 mb-5">{{data.ph}}</div>
+                <div class="text-center text-4xl font-extrabold text-gray-100 md:mb-5 lg:mb-3">{{data.ph}}</div>
+                <div class="md:hidden lg:block">
+                    <div class="flex items-center text-gray-100">
+                        <div class="font-medium">SAAT INI</div>
+                        <div class="space-x-3.5 flex text-xs ml-auto">
+                            <div class="border-b-2 border-gray-100">AVG: {{ph.avg}}</div>
+                            <div class="border-b-2 border-gray-100">LOW: {{ph.low}}</div>
+                            <div class="border-b-2 border-gray-100">HIHG: {{ph.high}}</div>
+                        </div>
+                    </div>
+                    <canvas id="ph"></canvas>
+                </div>
             </div>
             <!-- end ph -->
 
             <!-- EC -->
-            <div class="col-span-1 bg-green-500 p-3 rounded-sm">
+            <div class="col-span-1 bg-green-500 px-3 pt-3 md:pb-3 lg:pb-1 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"
@@ -57,12 +79,23 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">EC</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-100 mb-5">{{data.ec}} µS</div>
+                <div class="text-center text-4xl font-extrabold text-gray-100 md:mb-5 lg:mb-3">{{data.ec}} µS</div>
+                <div class="md:hidden lg:block">
+                    <div class="flex items-center text-gray-100">
+                        <div class="font-medium">SAAT INI</div>
+                        <div class="space-x-3.5 flex text-xs ml-auto">
+                            <div class="border-b-2 border-gray-100">AVG: {{ec.avg}}</div>
+                            <div class="border-b-2 border-gray-100">LOW: {{ec.low}}</div>
+                            <div class="border-b-2 border-gray-100">HIHG: {{ec.high}}</div>
+                        </div>
+                    </div>
+                    <canvas id="ec"></canvas>
+                </div>
             </div>
             <!-- /end ec -->
 
             <!-- Temperature -->
-            <div class="col-span-1 bg-gray-400 p-3 rounded-sm">
+            <div class="col-span-1 bg-gray-400 px-3 pt-3 md:pb-3 lg:pb-1 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"
@@ -75,12 +108,23 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">Temperature</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-800 mb-5">0.00℃</div>
+                <div class="text-center text-4xl font-extrabold text-gray-800 mb:mb-5 lg:mb-3">{{data.temp}}℃</div>
+                <div class="md:hidden lg:block">
+                    <div class="flex items-center text-gray-600">
+                        <div class="font-medium">SAAT INI</div>
+                        <div class="space-x-3.5 flex text-xs ml-auto">
+                            <div class="border-b-2 border-gray-600">AVG: {{temp.avg}}</div>
+                            <div class="border-b-2 border-gray-600">LOW: {{temp.low}}</div>
+                            <div class="border-b-2 border-gray-600">HIHG: {{temp.high}}</div>
+                        </div>
+                    </div>
+                    <canvas id="temp"></canvas>
+                </div>
             </div>
             <!-- /end temperature -->
 
             <!-- Pump -->
-            <div class="col-span-1 bg-blue-500 p-3 rounded-sm">
+            <div class="col-span-1 bg-blue-500 px-3 pt-3 md:pb-3 lg:pb-1 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"
@@ -97,12 +141,23 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">Pump</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-100 mb-5">0.00 ml</div>
+                <div class="text-center text-4xl font-extrabold text-gray-100 md:mb-5 lg:mb-3">{{data.pump}} ml</div>
+                <div class="md:hidden lg:block">
+                    <div class="flex items-center text-gray-100">
+                        <div class="font-medium">SAAT INI</div>
+                        <div class="space-x-3.5 flex text-xs ml-auto">
+                            <div class="border-b-2 border-gray-100">AVG: {{pump.avg}}</div>
+                            <div class="border-b-2 border-gray-100">LOW: {{pump.low}}</div>
+                            <div class="border-b-2 border-gray-100">HIHG: {{pump.high}}</div>
+                        </div>
+                    </div>
+                    <canvas id="pump"></canvas>
+                </div>
             </div>
             <!-- /end pump -->
 
             <!-- CO2 -->
-            <div class="col-span-1 bg-orange-500 p-3 rounded-sm">
+            <div class="col-span-1 bg-orange-500 px-3 pt-3 md:pb-3 lg:pb-1 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39.3px"
@@ -115,12 +170,23 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">CO<sub>2</sub></div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-900 mb-5">0.00 ppm</div>
+                <div class="text-center text-4xl font-extrabold text-gray-900 md:mb-5 lg:mb-3">{{data.co2}} ppm</div>
+                <div class="md:hidden lg:block">
+                    <div class="flex items-center text-gray-800">
+                        <div class="font-medium">SAAT INI</div>
+                        <div class="space-x-3.5 flex text-xs ml-auto">
+                            <div class="border-b-2 border-gray-800">AVG: {{co2.avg}}</div>
+                            <div class="border-b-2 border-gray-800">LOW: {{co2.low}}</div>
+                            <div class="border-b-2 border-gray-800">HIHG: {{co2.high}}</div>
+                        </div>
+                    </div>
+                    <canvas id="co2"></canvas>
+                </div>
             </div>
             <!-- /end co2 -->
 
             <!-- O2 -->
-            <div class="col-span-1 bg-rose-700 p-3 rounded-sm">
+            <div class="col-span-1 bg-rose-700 px-3 pt-3 md:pb-3 lg:pb-1 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="65.3px" 
@@ -135,12 +201,23 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">O<sub>2</sub></div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-900 mb-5">0.00 %</div>
+                <div class="text-center text-4xl font-extrabold text-gray-900 md:mb-5 lg:mb-3">{{data.o2}} %</div>
+                <div class="md:hidden lg:block">
+                    <div class="flex items-center text-gray-900">
+                        <div class="font-medium">SAAT INI</div>
+                        <div class="space-x-3.5 flex text-xs ml-auto">
+                            <div class="border-b-2 border-gray-900">AVG: {{o2.avg}}</div>
+                            <div class="border-b-2 border-gray-900">LOW: {{o2.low}}</div>
+                            <div class="border-b-2 border-gray-900">HIHG: {{o2.high}}</div>
+                        </div>
+                    </div>
+                    <canvas id="o2"></canvas>
+                </div>
             </div>
             <!-- /end o2 -->
 
             <!-- Hum -->
-            <div class="col-span-1 bg-emerald-700 p-3 rounded-sm">
+            <div class="col-span-1 bg-emerald-700 px-3 pt-3 md:pb-3 lg:pb-1 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="37.99px" 
@@ -158,12 +235,23 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">Hum</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-900 mb-5">0.00</div>
+                <div class="text-center text-4xl font-extrabold text-gray-900 md:mb-5 lg:mb-3">{{data.hum}}</div>
+                <div class="md:hidden lg:block">
+                    <div class="flex items-center text-gray-900">
+                        <div class="font-medium">SAAT INI</div>
+                        <div class="space-x-3.5 flex text-xs ml-auto">
+                            <div class="border-b-2 border-gray-900">AVG: {{hum.avg}}</div>
+                            <div class="border-b-2 border-gray-900">LOW: {{hum.low}}</div>
+                            <div class="border-b-2 border-gray-900">HIHG: {{hum.high}}</div>
+                        </div>
+                    </div>
+                    <canvas id="hum"></canvas>
+                </div>
             </div>
             <!-- /end Hum -->
 
-            <!-- Hum -->
-            <div class="col-span-1 bg-cyan-600 p-3 rounded-sm">
+            <!-- ORP -->
+            <div class="col-span-1 bg-cyan-600 px-3 pt-3 md:pb-3 lg:pb-1 rounded-sm">
                 <div class="flex items-center justify-between mb-3">
                     <div>
                         <svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40.21px" 
@@ -176,20 +264,666 @@
                     </div>
                     <div class="text-gray-100 font-medium text-lg">ORP</div>
                 </div>
-                <div class="text-center text-4xl font-extrabold text-gray-900 mb-5">0.00 mV</div>
+                <div class="text-center text-4xl font-extrabold text-gray-900 md:mb-5 lg:mb-3">{{data.orp}} mV</div>
+                <div class="md:hidden lg:block">
+                    <div class="flex items-center text-gray-900">
+                        <div class="font-medium">SAAT INI</div>
+                        <div class="space-x-3.5 flex text-xs ml-auto">
+                            <div class="border-b-2 border-gray-900">AVG: {{orp.avg}}</div>
+                            <div class="border-b-2 border-gray-900">LOW: {{orp.low}}</div>
+                            <div class="border-b-2 border-gray-900">HIHG: {{orp.high}}</div>
+                        </div>
+                    </div>
+                    <canvas id="orp"></canvas>
+                </div>
             </div>
-            <!-- /end Hum -->
+            <!-- /end ORP -->
         </div>
     </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import Chart from 'chart.js/auto'
 export default {
+    data () {
+        return {
+            dox: {
+                logger: [],
+                time: [],
+                low: 0.00,
+                high: 0.00,
+                avg: 0.00
+            },
+            ph: {
+                logger: [],
+                time: [],
+                low: 0.00,
+                high: 0.00,
+                avg: 0.00
+            },
+            ec: {
+                logger: [],
+                time: [],
+                low: 0.00,
+                high: 0.00,
+                avg: 0.00
+            },
+            temp: {
+                logger: [],
+                time: [],
+                low: 0.00,
+                high: 0.00,
+                avg: 0.00
+            },
+            pump: {
+                logger: [],
+                time: [],
+                low: 0.00,
+                high: 0.00,
+                avg: 0.00
+            },
+            co2: {
+                logger: [],
+                time: [],
+                low: 0.00,
+                high: 0.00,
+                avg: 0.00
+            },
+            o2: {
+                logger: [],
+                time: [],
+                low: 0.00,
+                high: 0.00,
+                avg: 0.00
+            },
+            hum: {
+                logger: [],
+                time: [],
+                low: 0.00,
+                high: 0.00,
+                avg: 0.00
+            },
+            orp: {
+                logger: [],
+                time: [],
+                low: 0.00,
+                high: 0.00,
+                avg: 0.00
+            },
+        }
+    },
     computed: {
         ...mapGetters({
             data: 'get_data'
         })
+    },
+    mounted () {
+        let ctxHeigh = 69
+        let app = this
+        const options = {
+            responsive: true,
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: 'black',
+                    displayColors: false,
+                    titleAlign: 'center',
+                    bodyAlign: 'center'
+                }
+            },
+            layout: {
+                padding: {
+                    left: -1,
+                    bottom: -4
+                }
+            },
+        }
+        const scalesGray = {
+            scales: {
+                x: {
+                    labels: false,
+                    ticks: {
+                        display: false,
+                    },
+                    grid: {
+                        display: false,
+                        drawBorder: false
+                    },
+                },
+                y: {
+                    ticks: {
+                        display: true,
+                        font: {
+                            size: 10
+                        },
+                        color: 'rgb(113,113,122, 0.8)'
+                    },
+                    grid: {
+                        display: true,
+                        drawBorder: false,
+                        color: 'rgb(113,113,122, 0.2)'
+                    }
+                }
+            }
+        }
+        const scalesWhite = {
+            scales: {
+                    x: {
+                        labels: false,
+                        ticks: {
+                            display: false,
+                        },
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                    },
+                    y: {
+                        ticks: {
+                            display: true,
+                            font: {
+                                size: 10
+                            },
+                            color: 'rgb(244,244,245, 0.8)'
+                        },
+                        grid: {
+                            display: true,
+                            drawBorder: false,
+                            color: 'rgb(244,244,245, 0.2)'
+                        }
+                    }
+                }
+        }
+        var ctxDo = document.getElementById('do')
+        ctxDo.height = ctxHeigh
+        window.myDo = new Chart(ctxDo, {
+            type: 'line',
+            data: {
+                labels: app.dox.time,
+                datasets: [
+                    {
+                        data: app.dox.logger,
+                        borderColor: 'rgb(63,63,70, 0.7)',
+                        borderWidth: '1',
+                        pointRadius: '0',
+                        pointHoverRadius: '0',
+                    }
+                ]
+            },
+            options : {
+                ...options,
+                ...scalesGray
+                
+            }
+        })
+
+        var ctxPh = document.getElementById('ph')
+        ctxPh.height = ctxHeigh
+        window.myPh = new Chart(ctxPh, {
+            type: 'line',
+            data: {
+                labels: app.ph.time,
+                datasets: [
+                    {
+                        data: app.ph.logger,
+                        borderColor: 'rgb(250,250,250, 0.9)',
+                        borderWidth: '1',
+                        pointRadius: '0',
+                        pointHoverRadius: '0',
+                    }
+                ]
+            },
+            options: {
+                ...options,
+                ...scalesWhite
+            }
+        })
+
+        var ctxEc = document.getElementById('ec')
+        ctxEc.height = ctxHeigh
+        window.myEc = new Chart(ctxEc, {
+            type: 'line',
+            data: {
+                labels: app.ec.time,
+                datasets: [
+                    {
+                        data: app.ec.logger,
+                        borderColor: 'rgb(250,250,250, 0.9)',
+                        borderWidth: '1',
+                        pointRadius: '0',
+                        pointHoverRadius: '0',
+                    }
+                ]
+            },
+            options: {
+                ...options,
+                ...scalesWhite
+            }
+        })
+        var ctxTemp = document.getElementById('temp')
+        ctxTemp.height = ctxHeigh
+        window.myTemp = new Chart(ctxTemp, {
+            type: 'line',
+            data: {
+                labels: app.temp.time,
+                datasets: [
+                    {
+                        data: app.temp.logger,
+                        borderColor: 'rgb(82,82,91, 0.9)',
+                        borderWidth: '1',
+                        pointRadius: '0',
+                        pointHoverRadius: '0',
+                    }
+                ]
+            },
+            options: {
+                ...options,
+                ...scalesGray
+            }
+        })
+
+        var ctxPump = document.getElementById('pump')
+        ctxPump.height = ctxHeigh
+        window.myPump = new Chart(ctxPump, {
+            type: 'line',
+            data: {
+                labels: app.pump.time,
+                datasets: [
+                    {
+                        data: app.pump.logger,
+                        borderColor: 'rgb(250,250,250, 0.9)',
+                        borderWidth: '1',
+                        pointRadius: '0',
+                        pointHoverRadius: '0',
+                    }
+                ]
+            },
+            options: {
+                ...options,
+                ...scalesWhite
+            }
+        })
+
+        var ctxCo2 = document.getElementById('co2')
+        ctxCo2.height = ctxHeigh
+        window.myCo2 = new Chart(ctxCo2, {
+            type: 'line',
+            data: {
+                labels: app.co2.time,
+                datasets: [
+                    {
+                        data: app.co2.logger,
+                        borderColor: 'rgb(39,39,42, 0.9)',
+                        borderWidth: '1',
+                        pointRadius: '0',
+                        pointHoverRadius: '0',
+                    }
+                ]
+            },
+            options: {
+                ...options,
+                scales: {
+                    x: {
+                        labels: false,
+                        ticks: {
+                            display: false,
+                        },
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                    },
+                    y: {
+                        ticks: {
+                            display: true,
+                            font: {
+                                size: 10
+                            },
+                            color: 'rgb(17,24,39, 0.5)'
+                        },
+                        grid: {
+                            display: true,
+                            drawBorder: false,
+                            color: 'rgb(17,24,39, 0.2)'
+                        }
+                    }
+                }
+            }
+        })
+
+        var ctxO2 = document.getElementById('o2')
+        ctxO2.height = ctxHeigh
+        window.myO2 = new Chart(ctxO2, {
+            type: 'line',
+            data: {
+                labels: app.o2.time,
+                datasets: [
+                    {
+                        data: app.o2.logger,
+                        borderColor: 'rgb(24,24,27, 0.9)',
+                        borderWidth: '1',
+                        pointRadius: '0',
+                        pointHoverRadius: '0',
+                    }
+                ]
+            },
+            options: {
+                ...options,
+                scales: {
+                    x: {
+                        labels: false,
+                        ticks: {
+                            display: false,
+                        },
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                    },
+                    y: {
+                        ticks: {
+                            display: true,
+                            font: {
+                                size: 10
+                            },
+                            color: 'rgb(17,24,39, 0.5)'
+                        },
+                        grid: {
+                            display: true,
+                            drawBorder: false,
+                            color: 'rgb(17,24,39, 0.2)'
+                        }
+                    }
+                }
+            }
+        })
+
+        var ctxHum = document.getElementById('hum')
+        ctxHum.height = ctxHeigh
+        window.myHum = new Chart(ctxHum, {
+            type: 'line',
+            data: {
+                labels: app.hum.time,
+                datasets: [
+                    {
+                        data: app.hum.logger,
+                        borderColor: 'rgb(24,24,27, 0.9)',
+                        borderWidth: '1',
+                        pointRadius: '0',
+                        pointHoverRadius: '0',
+                    }
+                ]
+            },
+            options: {
+                ...options,
+                scales: {
+                    x: {
+                        labels: false,
+                        ticks: {
+                            display: false,
+                        },
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                    },
+                    y: {
+                        ticks: {
+                            display: true,
+                            font: {
+                                size: 10
+                            },
+                            color: 'rgb(17,24,39, 0.5)'
+                        },
+                        grid: {
+                            display: true,
+                            drawBorder: false,
+                            color: 'rgb(17,24,39, 0.2)'
+                        }
+                    }
+                }
+            }
+        })
+
+        var ctxOrp = document.getElementById('orp')
+        ctxOrp.height = ctxHeigh
+        window.myOrp = new Chart(ctxOrp, {
+            type: 'line',
+            data: {
+                labels: app.orp.time,
+                datasets: [
+                    {
+                        data: app.orp.logger,
+                        borderColor: 'rgb(24,24,27, 0.9)',
+                        borderWidth: '1',
+                        pointRadius: '0',
+                        pointHoverRadius: '0',
+                    }
+                ]
+            },
+            options: {
+                ...options,
+                scales: {
+                    x: {
+                        labels: false,
+                        ticks: {
+                            display: false,
+                        },
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                    },
+                    y: {
+                        ticks: {
+                            display: true,
+                            font: {
+                                size: 10
+                            },
+                            color: 'rgb(17,24,39, 0.5)'
+                        },
+                        grid: {
+                            display: true,
+                            drawBorder: false,
+                            color: 'rgb(17,24,39, 0.2)'
+                        }
+                    }
+                }
+            }
+        })
+
+        
+    },
+    methods: {
+        getTime () {
+            let date = new Date()
+            let hh = date.getHours()
+            let mm = date.getMinutes()
+            let ss = date.getSeconds()
+            
+            hh = checkTime(hh)
+            mm = checkTime(mm)
+            ss = checkTime(ss)
+
+            function checkTime(i) {
+                if(i < 10) {
+                    i = `0${i}`
+                }
+                return i
+            }
+
+            return `${hh}:${mm}:${ss}`
+        },
+        getAvg (arr) {
+            let sum = 0
+            let n = arr.length
+            for (let i = 0; i < arr.length; i++) {
+                sum += parseInt(arr[i])
+            }
+            return parseFloat(sum / n).toFixed(2)
+        }  
+    },
+    watch: {
+        'data.do': function (val) {
+            if(val > 0) {
+                let time = this.getTime()
+                if(this.dox.logger.length > 60) {
+                    this.dox.logger.splice(0, 1)
+                }
+                if(this.dox.time.length > 60) {
+                    this.dox.time.splice(0, 1)
+                }
+                this.dox.logger.push(val)
+                this.dox.time.push(time)
+                this.dox.low = Math.min(...this.dox.logger)
+                this.dox.high = Math.max(...this.dox.logger)
+                this.dox.avg = this.getAvg(this.dox.logger)
+                window.myDo.update()
+            }
+        },
+        'data.ph': function (val) {
+            if(val > 0) {
+                let time = this.getTime()
+                if(this.ph.logger.length > 60) {
+                    this.ph.logger.splice(0, 1)
+                }
+                if(this.ph.time.length > 60) {
+                    this.ph.time.splice(0, 1)
+                }
+                this.ph.logger.push(val)
+                this.ph.time.push(time)
+                this.ph.low = Math.min(...this.ph.logger)
+                this.ph.high = Math.max(...this.ph.logger)
+                this.ph.avg = this.getAvg(this.ph.logger)
+                window.myPh.update()
+            }
+        },
+        'data.ec': function (val) {
+            if(val > 0) {
+                let time = this.getTime()
+                if(this.ec.logger.length > 60) {
+                    this.ec.logger.splice(0, 1)
+                }
+                if(this.ec.time.length > 60) {
+                    this.ec.time.splice(0, 1)
+                }
+                this.ec.logger.push(val)
+                this.ec.time.push(time)
+                this.ec.low = Math.min(...this.ec.logger)
+                this.ec.high = Math.max(...this.ec.logger)
+                this.ec.avg = this.getAvg(this.ec.logger)
+                window.myEc.update()
+            }
+        },
+        'data.temp': function (val) {
+            if(val > 0) {
+                let time = this.getTime()
+                if(this.temp.logger.length > 60) {
+                    this.temp.logger.splice(0, 1)
+                }
+                if(this.temp.time.length > 60) {
+                    this.temp.time.splice(0, 1)
+                }
+                this.temp.logger.push(val)
+                this.temp.time.push(time)
+                this.temp.low = Math.min(...this.temp.logger)
+                this.temp.high = Math.max(...this.temp.logger)
+                this.temp.avg = this.getAvg(this.temp.logger)
+                window.myTemp.update()
+            }
+        },
+        'data.pump': function (val) {
+            if(val > 0) {
+                let time = this.getTime()
+                if(this.pump.logger.length > 60) {
+                    this.pump.logger.splice(0, 1)
+                }
+                if(this.pump.time.length > 60) {
+                    this.pump.time.splice(0, 1)
+                }
+                this.pump.logger.push(val)
+                this.pump.time.push(time)
+                this.pump.low = Math.min(...this.pump.logger)
+                this.pump.high = Math.max(...this.pump.logger)
+                this.pump.avg = this.getAvg(this.pump.logger)
+                window.myPump.update()
+            }
+        },
+        'data.co2': function (val) {
+            if(val > 0) {
+                let time = this.getTime()
+                if(this.co2.logger.length > 60) {
+                    this.co2.logger.splice(0, 1)
+                }
+                if(this.co2.time.length > 60) {
+                    this.co2.time.splice(0, 1)
+                }
+                this.co2.logger.push(val)
+                this.co2.time.push(time)
+                this.co2.low = Math.min(...this.co2.logger)
+                this.co2.high = Math.max(...this.co2.logger)
+                this.co2.avg = this.getAvg(this.co2.logger)
+                window.myCo2.update()
+            }
+        },
+        'data.o2': function (val) {
+            if(val > 0) {
+                let time = this.getTime()
+                if(this.o2.logger.length > 60) {
+                    this.o2.logger.splice(0, 1)
+                }
+                if(this.o2.time.length > 60) {
+                    this.o2.time.splice(0, 1)
+                }
+                this.o2.logger.push(val)
+                this.o2.time.push(time)
+                this.o2.low = Math.min(...this.o2.logger)
+                this.o2.high = Math.max(...this.o2.logger)
+                this.o2.avg = this.getAvg(this.o2.logger)
+                window.myO2.update()
+            }
+        },
+        'data.hum': function (val) {
+            if(val > 0) {
+                let time = this.getTime()
+                if(this.hum.logger.length > 60) {
+                    this.hum.logger.splice(0, 1)
+                }
+                if(this.hum.time.length > 60) {
+                    this.hum.time.splice(0, 1)
+                }
+                this.hum.logger.push(val)
+                this.hum.time.push(time)
+                this.hum.low = Math.min(...this.hum.logger)
+                this.hum.high = Math.max(...this.hum.logger)
+                this.hum.avg = this.getAvg(this.hum.logger)
+                window.myHum.update()
+            }
+        },
+        'data.orp': function (val) {
+            if(val > 0) {
+                let time = this.getTime()
+                if(this.orp.logger.length > 60) {
+                    this.orp.logger.splice(0, 1)
+                }
+                if(this.orp.time.length > 60) {
+                    this.orp.time.splice(0, 1)
+                }
+                this.orp.logger.push(val)
+                this.orp.time.push(time)
+                this.orp.low = Math.min(...this.orp.logger)
+                this.orp.high = Math.max(...this.orp.logger)
+                this.orp.avg = this.getAvg(this.orp.logger)
+                window.myOrp.update()
+            }
+        },
     }
 }
 </script>

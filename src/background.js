@@ -16,6 +16,12 @@ db.serialize(function () {
     ph REAL,
     do REAL,
     ec REAL,
+    temp REAL,
+    pump REAL,
+    co2 REAL,
+    o2 REAL,
+    hum REAL,
+    orp REAL,
     timestamp TEXT
   )`;
   db.run(sql)
@@ -138,11 +144,22 @@ ipcMain.on('OperatingSystem', (event) => {
 
 // set data to database
 ipcMain.on('storeData', (event, data) => {
+  console.log(data);
   db.serialize(function() {
-    let sql = `INSERT INTO logger('ph', 'do', 'ec', 'timestamp') 
-      VALUES('${data.ph}', '${data.do}', '${data.ec}', '${data.timestamp}')`;
+    let sql = `INSERT INTO logger('ph', 'do', 'ec','temp','pump','co2','o2','hum','orp','timestamp') 
+      VALUES('${data.ph}', '${data.do}', '${data.ec}','${data.temp}','${data.pump}','${data.co2}','${data.o2}','${data.hum}','${data.orp}','${data.timestamp}')`;
 
     db.run(sql);
+  })
+})
+
+// get start date form database
+ipcMain.on('avaliabledate', (event) => {
+  db.serialize(function () {
+    db.all(`SELECT timestamp FROM logger ORDER BY timestamp ASC LIMIT 1`, (err, row) => {
+      if(err) throw err
+      event.returnValue = row
+    })
   })
 })
 
@@ -159,16 +176,18 @@ ipcMain.on('getData', (event, arg) => {
   let order = arg.order;
   let key = arg.key
   let page = arg.page
+  let startDate = "'"+arg.start+"'"
+  let endDate = "'"+arg.end+"'"
   let count;
   let data = {};
-  let limit = 19;
+  let limit = 20;
   let offset = (page -1) * limit;
-
+  
   db.serialize(function() {
-    db.all(`SELECT COUNT(*) as count FROM logger`, (err, row) => {
+    db.all(`SELECT COUNT(*) as count FROM logger WHERE date(timestamp) BETWEEN ${startDate} and ${endDate}`, (err, row) => {
       if(err) throw err;
       count = row[0].count
-      db.all(`SELECT * FROM logger ORDER BY ${key} ${order} LIMIT ${limit} OFFSET ${offset}`, (err, row) => {
+      db.all(`SELECT * FROM logger  WHERE date(timestamp) BETWEEN ${startDate} and ${endDate} ORDER BY ${key} ${order} LIMIT ${limit} OFFSET ${offset}`, (err, row) => {
         let p = Math.floor(count / limit)
         let i = count / limit
         let last_pages = chekPage(i, p)

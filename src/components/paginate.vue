@@ -1,13 +1,13 @@
 <template>
     <div>
         <div class="relative inline-flex -space-x-px">
-            <button class="bg-gray-800 border border-gray-700 relative px-2.5 py-1"><i class="icon-arrow-left22"></i></button>
+            <button @click="getData(pages.current_page - 1)" :disabled="pages.current_page == 1" :class="{'cursor-not-allowed text-gray-600': pages.current_page == 1}" class="bg-gray-800 border border-gray-700 relative px-2.5 py-1"><i class="icon-arrow-left22"></i></button>
             <button v-for="page in rangeOne" :key="page.page" @click="getData(page.page)" :class="[pages.current_page == page.page? 'bg-red-600 text-gray-100':'bg-gray-800']" class="border border-gray-700 relative px-2.5 py-1">{{page.page}}</button>
             <span v-if="rangeOne.length == 2" class="bg-gray-800 border border-gray-700 px-2.5 py-1 cursor-not-allowed">...</span>
             <button v-for="page in rangeTwo" :key="page.page" @click="getData(page.page)" :class="[pages.current_page == page.page? 'bg-red-600 text-gray-100':'bg-gray-800']" class="bg-gray-800 border border-gray-700 relative px-2.5 py-1">{{page.page}}</button>
             <span v-if="rangeThree.length == 2" class="bg-gray-800 border border-gray-700 px-2.5 py-1 cursor-not-allowed">...</span>
             <button v-for="page in rangeThree" :key="page.page" @click="getData(page.page)" :class="[pages.current_page == page.page? 'bg-red-600 text-gray-100':'bg-gray-800']" class="border border-gray-700 relative px-2.5 py-1">{{page.page}}</button>
-            <button class="bg-gray-800 border border-gray-700 relative px-2.5 py-1"><i class="icon-arrow-right22"></i></button>
+            <button @click="getData(pages.current_page + 1)" :disabled="pages.current_page == pages.last_page" :class="{'cursor-not-allowed text-gray-600' : pages.current_page == pages.last_page}" class="bg-gray-800 border border-gray-700 relative px-2.5 py-1"><i class="icon-arrow-right22"></i></button>
         </div>
     </div>
 </template>
@@ -24,15 +24,16 @@ export default {
     computed: {
         current_page () {
             return this.pages.current_page
+        },
+        total_page () {
+            return this.pages.last_page
         }
     },
     methods: {
         getData (i) {
             this.$emit('get-page', i)
-        }
-    },
-    watch: {
-        current_page (val) {
+        },
+        setPage (val) {
             this.rangeOne = []
             this.rangeTwo = []
             this.rangeThree = []
@@ -65,6 +66,14 @@ export default {
                     this.rangeThree.push({page: this.pages.last_page  +i -8})
                 }
             }
+        }
+    },
+    watch: {
+        current_page (val) {
+            this.setPage(val)
+        },
+        total_page () {
+            this.setPage(this.current_page)
         }
     }
 

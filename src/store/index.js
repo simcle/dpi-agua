@@ -8,7 +8,13 @@ export default new Vuex.Store({
     data: {
       ph: 0.00,
       do: 0.00,
-      ec: 0.00
+      ec: 0.00,
+      temp: 0.00,
+      co2: 0.00,
+      o2: 0.00,
+      hum: 0.00,
+      orp: 0.00,
+      pump: 0.00,
     },
     status: false,
     error: '',
