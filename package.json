@@ -16,6 +16,7 @@
     "axios": "^0.25.0",
     "chart.js": "^3.7.0",
     "core-js": "^3.6.5",
+    "exceljs": "^4.3.0",
     "firebase": "^9.6.5",
     "serialport": "^10.0.0",
     "sqlite3": "^5.0.2",

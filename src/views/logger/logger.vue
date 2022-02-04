@@ -16,7 +16,7 @@
                  </template>
              </v-date-picker>
              <div>
-                 <button class="bg-gray-700 h-8 px-3 rounded-sm">Export excel</button>
+                 <button @click="saveAs" class="bg-gray-700 h-8 px-3 rounded-sm">Simpan Excel</button>
              </div>
         </div>
         <div class="rounded-sm overflow-hidden border border-gray-700">
@@ -166,6 +166,13 @@ export default {
                 this.sortOrder = 'DESC'
             }
             this.getData(1)
+        },
+        saveAs () {
+            let params = {
+                start: this.range.start,
+                end: this.range.end
+            }
+            ipcRenderer.send('export', params)
         }
     },
     watch: {

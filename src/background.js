@@ -1,11 +1,11 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, ipcMain } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, dialog } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 import sqlite3 from 'sqlite3'
 import path from 'path'
-
+import { exportToExcel } from './excle'
 const userData = app.getPath('userData')
 const dbFile = path.join(userData, 'database.sqlite')
 
@@ -131,7 +131,6 @@ ipcMain.on('OperatingSystem', (event) => {
     version: app.getVersion(),
     navbar: true
   }
-  console.log(app.getVersion());
   if(process.platform === 'darwin') {
     arg.navbar = false
   }
@@ -144,7 +143,6 @@ ipcMain.on('OperatingSystem', (event) => {
 
 // set data to database
 ipcMain.on('storeData', (event, data) => {
-  console.log(data);
   db.serialize(function() {
     let sql = `INSERT INTO logger('ph', 'do', 'ec','temp','pump','co2','o2','hum','orp','timestamp') 
       VALUES('${data.ph}', '${data.do}', '${data.ec}','${data.temp}','${data.pump}','${data.co2}','${data.o2}','${data.hum}','${data.orp}','${data.timestamp}')`;
@@ -199,6 +197,32 @@ ipcMain.on('getData', (event, arg) => {
           }
         }
         event.returnValue = data
+      })
+    })
+  })
+})
+
+// save to excel
+ipcMain.on('export', (event, arg) => {
+  let start = `"${arg.start}"`
+  let end = `"${arg.end}"`
+  db.serialize(function () {
+    db.all(`SELECT * FROM logger WHERE date(timestamp) BETWEEN ${start} and ${end}`, (err, row) => {
+      if(err) throw err
+      dialog.showSaveDialog({
+        filters: [
+          {
+            name: 'laporan',
+            extensions: ['xlsx', 'docx']
+          }
+        ],
+      })
+      .then((file) => {
+        if(!file.canceled) {
+          let filePath = file.filePath.toString()
+          exportToExcel(filePath, row)
+          event.returnValue = "hallo"
+        }
       })
     })
   })
