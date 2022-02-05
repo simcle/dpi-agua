@@ -13,7 +13,8 @@
         color: #9ca3af;
         text-align: left;
         background-color: #1e1e1e;
-        -webkit-app-region: no-drag; 
+        -webkit-app-region: no-drag;
+        overflow:auto; 
     }
     a {
         -webkit-app-region: no-drag; 

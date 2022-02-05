@@ -3,7 +3,7 @@
 		<div class="fixed w-full top-0 z-30">
 			<!-- windows win32 navbar -->
 			<div v-if="arg.navbar" class="flex items-center justify-between bg-gray-800 drag">
-				<div class="px-3 py-1 text-gray-500">dpi-agua v{{arg.version}}</div>
+				<div class="px-3 py-1 text-gray-500">Labrego v{{arg.version}}</div>
 				<div class="flex items-center">
 					<a href="#" @click="minimize" class="hover:bg-gray-700 py-1 px-3 cursor-auto"><i class="icon-minus3" style="font-size: 12px;"></i></a>
 					<a href="#" @click="maximize" class="hover:bg-gray-700 py-1 px-3 cursor-auto"><i class="icon-checkbox-unchecked" style="font-size: 12px;"></i></a>
@@ -15,7 +15,7 @@
 			<!-- macOS navbar -->
 			<div v-else>
 				<div v-if="navShow" class="bg-gray-800 flex items-center justify-center drag">
-					<div class="px-3 py-1">dpi-agua v{{arg.version}}</div>
+					<div class="px-3 py-1">Labrego v{{arg.version}}</div>
 				</div>
 			</div>
 			<!-- /macOS navbar -->
@@ -26,8 +26,9 @@
 					<router-link to="/logger" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-file-spreadsheet"></i></router-link>
 					<a href="#" @click.prevent="port_connection = true" class="bg-gray-700 h-8 w-8 flex items-center justify-center rounded-sm"><i class="icon-alignment-unalign" :class="{'text-green-500': status}"></i></a>
 					<router-link to="/register" class="bg-yellow-500 text-gray-100 h-8 w-8 flex items-center justify-center rounded-sm" exact><i class="icon-cloud-upload"></i></router-link>
+					<router-link to="/help" class="border rounded-sm border-gray-500 h-8 w-8 flex items-center justify-center"><i class="icon-help"></i></router-link>
 				</div>
-				<div class="mr-2">
+				<div class="mr-2 flex items-center space-x-3">
 					<div><i class="icon-connection" :class="[internet ? 'text-green-500':'text-gray-700']"></i></div>
 				</div>
 			</div>

@@ -1,11 +1,13 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, ipcMain, dialog } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, dialog, Menu } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 import sqlite3 from 'sqlite3'
 import path from 'path'
 import { exportToExcel } from './excle'
+
+Menu.setApplicationMenu(null);
 const userData = app.getPath('userData')
 const dbFile = path.join(userData, 'database.sqlite')
 
@@ -43,6 +45,7 @@ async function createWindow() {
     height: 525,
     minWidth: 800,
     minHeight: 525,
+    title: 'Agua',
     frame: false,
     titleBarStyle: 'hidden', // macOS
     trafficLightPosition: {x: 10, y: 7}, // macOS

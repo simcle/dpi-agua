@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import indexDashboard from '../views/dashboard/index'
 import Dashboard from '../views/dashboard/dashboard'
 import Register from '../views/register/register'
-import Logger from  '../views/logger/logger.vue'
+import Logger from  '../views/logger/logger'
+import Help from '../views/help/help'
 Vue.use(VueRouter)
 
 const routes = [
@@ -27,6 +28,11 @@ const routes = [
     path: '/logger',
     name: 'Logger',
     component: Logger
+  },
+  {
+    path: '/help',
+    name: "Bantuan",
+    component: Help
   }
 ]
 
